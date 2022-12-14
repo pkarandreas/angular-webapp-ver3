@@ -1,0 +1,7 @@
+<div *ngIf="course !== null" class="container border border-primary rounted p-5">
+ <div class="row justify-content-center align-items-center g-2">
+    <div class="col-md-4"><h4>Do You want to delete :{{courseID}} ?</h4></div>
+    <div class="col-md-4" (click)="onYesHandler()"><button class="btn btn-danger">Yes</button></div>
+    <div class="col-md-4"><button class="btn btn-info" (click)="onCancelHandler()">NO</button></div>
+ </div>
+</div>

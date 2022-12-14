@@ -1,0 +1,40 @@
+<div class="container m-4 border border-primary rounded mx-auto">
+    <div class="row justify-content-center align-items-center g-2 p-4">
+     <div class="col-md-6"><button class="btn btn-primary">Add New Course</button></div>
+     <div class="col-md-6 bg-info mx-auto p-3 text-center"><h3>Total Courses :{{courses.length}}</h3></div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2 p-4">
+     <div class="col-md-12">
+         <table class="table table-striped border border-2 rounded">
+             <caption class="text-center"><h3>Course List for Programmers (2023)</h3></caption>
+             <thead>
+                 <tr>
+                   <th>No.</th>
+                   <th>ID</th>
+                   <th>Course</th>
+                   <th>Start Date</th>
+                   <th>Duration</th>
+                   <th></th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let courseItem of courses ; index as i">
+                     <td>{{i+1}}</td>
+                     <td>{{courseItem.id}}</td>
+                     <td>{{courseItem.courseTitle}}</td>
+                     <td>{{courseItem.startDate | date:'dd/MM/yyyy' }}</td>
+                     <td>{{courseItem.duration}} Days</td>
+                     <td   class="text-center align-middle">
+                         <div class="btn-goup">
+                           &nbsp;
+                           <button  class="btn btn-danger" (click)="onDeleteCourse(courseItem.id)">Delete Course</button>
+                           &nbsp;
+                           <button class="btn btn-success" (click)="onEditCourse(courseItem.id)">Edit Course</button>
+                         </div>
+                       </td>
+                 </tr>
+               </tbody>
+         </table>
+     </div>
+    </div>
+ </div>
