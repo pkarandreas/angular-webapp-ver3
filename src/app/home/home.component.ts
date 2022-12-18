@@ -10,14 +10,7 @@ import { CoursesSrvService } from './../Services/courses-srv.service';
 })
 export class HomeComponent implements OnInit {
   public message :string ='Welcome to COURSE M.I.S. App';
-  public tmp :string ='Petros Karandreas';
-
   constructor(private route:Router) {}
-
   ngOnInit(): void {
-
-  }
-  clickHandler(){
-    this.route.navigate([`about/${this.tmp}`]);
   }
 }

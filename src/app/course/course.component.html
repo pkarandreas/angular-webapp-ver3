@@ -1,0 +1,94 @@
+<div class="container m-5 border border-dark rounded-3 contStyle mx-auto">
+    <div class="row m-2">
+        <div class="col-md-12" p-5>
+            <h5 class="text-center">{{formTitle}}</h5>
+            <br>
+            <form *ngIf="course || _courseID === 0 else loading" [formGroup]="courseForm" (ngSubmit)="onFormSubmit()" class="border border-primary rounded-4 p-3">
+
+                <!-- courseID -->
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <label for="CourseID">Give CourseID  :</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input  type="number" formControlName="CourseID">
+                    </div>
+                </div>
+
+                <!-- courseTitle -->
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <label for="CourseTitle">Give Course Title :</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input required minlength="3" maxlength="30" class="form-control" formControlName="CourseTitle" type="text">
+                        <div *ngIf="courseForm.controls['CourseTitle']?.touched && courseForm.controls['CourseTitle']?.invalid">
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseTitle']?.errors?.['required']">
+                                Course Title Required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseTitle']?.errors?.['minlength']">
+                                You must enter at least {{courseForm.controls['CourseTitle']?.errors['minlength']?.['requiredLength']}} for Course Title min chars
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CourseStartDate -->
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <label for="CourseStartDate">Give Start Date :</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input required [min]="StartMinDate" [max]="CourseMaxDate" class="form-control" type="date" formControlName="CourseStartDate">
+                        <div *ngIf="courseForm.controls['CourseStartDate']?.touched && courseForm.controls['CourseStartDate']?.invalid">
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseStartDate']?.errors?.['required']">
+                                Course Start Date Required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseStartDate']?.errors?.['between']">
+                                Course Start Date must be between {{courseForm.controls['CourseStartDate']?.errors?.['requiredValue']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CourseDuration -->
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <label for="CourseDuration">Give Course Duration :</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input required min="2" max="20" class="form-control" type="number" formControlName="CourseDuration">
+                        <div *ngIf="courseForm.controls['CourseDuration']?.touched && courseForm.controls['CourseDuration']?.invalid">
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseDuration']?.errors?.['required']">
+                                Course Duration Required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseDuration']?.errors?.['min']">
+                                Course Duration min value must be : 2
+                            </div>
+                            <div class="alert alert-danger" *ngIf="courseForm.controls['CourseDuration']?.errors?.['max']">
+                                Course Duration max value must be : 20
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col-md-6 form-group">
+                        <button type="submit" [disabled]="!courseForm.valid" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <button type="button" class="btn btn-warning" (click)="onCancelHandler()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="isHidden" class="row m-2 alert alert-danger">
+        <div class="col-md-12">
+            {{message}}
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    Loading Course...
+  </ng-template>

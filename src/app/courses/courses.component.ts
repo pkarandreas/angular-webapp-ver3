@@ -27,9 +27,8 @@ export class CoursesComponent implements OnInit {
     this.srv.getCourseByID(Number(id)).subscribe(data=>{this.homeCourse = data;});
   }
   onEditCourse(id:number){
-    //?????????????????????????
     this.homeCourseId = id.toString();
-    console.log(this.homeCourseId);
+    this.route.navigate([`addEditCourse/${this.homeCourseId}`]);
   }
   public onDeleted(msg:string)
   {
@@ -38,6 +37,9 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  onCreateCourse(){
+    this.route.navigate([`addEditCourse/0`]);
   }
 
 }
