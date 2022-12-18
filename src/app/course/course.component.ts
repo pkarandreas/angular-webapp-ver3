@@ -78,7 +78,7 @@ export class CourseComponent implements OnInit {
    }
   }
   hideDiv(){
-    setTimeout(()=>{this.isHidden = false;this.route.navigate(['courses']); },5000);
+    setTimeout(()=>{this.isHidden = false;this.route.navigate(['courses']); },3000);
    }
    onCancelHandler(){
     this.route.navigate(['courses']);
