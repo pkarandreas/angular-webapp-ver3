@@ -6,6 +6,9 @@ import { Subject} from "rxjs";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import {DatePipe} from "@angular/common";
+import {MatDialog} from '@angular/material/dialog';
+import { CourseDeleteComponent } from './../course-delete/course-delete.component';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -20,7 +23,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public dataTableOptions : DataTables.Settings ={};
   public dtTrigger: Subject<any> = new Subject<any>();
   //========================================================
-  constructor(private srv:CoursesSrvService,private route:Router) {
+  constructor(private srv:CoursesSrvService,private route:Router,public dialog:MatDialog) {
     this.dataTableOptions={
         pagingType :"full_numbers",
         pageLength : 5,
@@ -40,8 +43,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(id:number){
-    //???????????????????????
-    this.srv.getCourseByID(Number(id)).subscribe(data=>{this.homeCourse = data;});
+        // this.srv.getCourseByID(Number(id)).subscribe(data=>{this.homeCourse = data;});
+    const dialogRef = this.dialog.open(CourseDeleteComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
   onEditCourse(id:number){
     this.homeCourseId = id.toString();

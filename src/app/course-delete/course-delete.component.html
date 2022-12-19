@@ -1,7 +1,8 @@
-<div *ngIf="course !== null" class="container border border-primary rounted p-5">
- <div class="row justify-content-center align-items-center g-2">
-    <div class="col-md-4"><h4>Do You want to delete :{{courseID}} ?</h4></div>
-    <div class="col-md-4" (click)="onYesHandler()"><button class="btn btn-danger">Yes</button></div>
-    <div class="col-md-4"><button class="btn btn-info" (click)="onCancelHandler()">NO</button></div>
- </div>
-</div>
+<h3 mat-dialog-title>Delete Course Action</h3>
+<mat-dialog-content>
+  <h4>Do you want to delete ?</h4>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="yes">Yes</button>
+  <button mat-raised-button color="accent"  mat-dialog-close mat-dialog-close="cancel">Cancel</button>
+</mat-dialog-actions>

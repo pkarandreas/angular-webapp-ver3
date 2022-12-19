@@ -7,7 +7,7 @@ import { CoursesSrvService } from '../Services/courses-srv.service';
   templateUrl: './course-delete.component.html',
   styleUrls: ['./course-delete.component.css']
 })
-export class CourseDeleteComponent implements OnInit, OnChanges {
+export class CourseDeleteComponent implements OnInit{
 public courseID : string | undefined;
 @Output() deleteEvent = new EventEmitter()
 @Input() public course:CourseClass;
@@ -18,19 +18,5 @@ public message :string ="";
   ngOnInit(): void {
 
   }
-  onCancelHandler(){
-    this.message = `Course with ID : ${this.course.id} and Title : ${this.course.courseTitle} was not deleted`;
-    this.course=null;
-    this.deleteEvent.emit(this.message);
-  }
-  onYesHandler(){
-    this.srv.deleteCourse(this.course.id);
-    this.message = `Course with ID :${this.course.id} and Title : ${this.course.courseTitle} deleted successfully`;
-    this.course = null;
-    this.deleteEvent.emit(this.message);
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-   if (changes['course'].currentValue !== null)
-      this.courseID = this.course.id.toString();
-  }
+
 }
