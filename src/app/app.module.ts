@@ -12,6 +12,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseComponent } from './course/course.component';
+import { DataTablesModule } from 'angular-datatables';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { CourseComponent } from './course/course.component';
     HttpClientModule,
     RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule
 
   ],
   providers: [],
