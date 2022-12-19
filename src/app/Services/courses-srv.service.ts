@@ -43,7 +43,4 @@ export class CoursesSrvService {
         console.log("executed ok !!!!!");
      });
    }
-
-
-
 }
