@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output ,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Inject, Input, Output ,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CourseClass } from '../Models/CoursesClass';
 import { CoursesSrvService } from '../Services/courses-srv.service';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-course-delete',
@@ -9,10 +10,16 @@ import { CoursesSrvService } from '../Services/courses-srv.service';
 })
 export class CourseDeleteComponent implements OnInit{
 public courseID : string | undefined;
-@Output() deleteEvent = new EventEmitter()
-@Input() public course:CourseClass;
+public course : CourseClass;
 public message :string ="";
- constructor(private srv:CoursesSrvService) {
+constructor(@Inject(MAT_DIALOG_DATA) public data :number,private srv:CoursesSrvService) {
+
+  if (Number(data) >= 1000 ){
+    this.srv.getCourseByID(Number(data)).subscribe((result)=>{
+      this.course = result;
+      this.message=`Do you want to delete : ${this.course.courseTitle} ?`;
+    });
+  }
  }
 
   ngOnInit(): void {

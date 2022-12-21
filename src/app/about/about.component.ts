@@ -7,13 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-public name :string ="";
-  constructor(private route:ActivatedRoute) { }
+public message :string ="";
+  constructor() {
+    this.message = 'Courses M.I.S is for Educational Purposes created in December 2022';
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(param=>{
-      this.name = param.get('name');
-    })
   }
 
 }

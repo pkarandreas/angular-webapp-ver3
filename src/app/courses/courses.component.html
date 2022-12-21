@@ -1,18 +1,17 @@
 <div class="container border border-primary rounded ">
     <div class="row justify-content-center align-items-center g-2 p-4">
      <div class="col-md-2">
-      <button class="btn btn-primary" (click)="onCreateCourse()">Add New Course</button>
+      <button class="btn btn-primary" (click)="onCreateCourse()"> <mat-icon fontIcon="add_circle"></mat-icon>Add New Course</button>
     </div>
     <div class="col-md-2">
-      <button class="btn btn-warning" (click)="onPDFClick()">Export To PDF</button>
+      <button class="btn btn-warning" (click)="onPDFClick()"><mat-icon fontIcon="picture_as_pdf"></mat-icon>Export To PDF</button>
     </div>
-
-     <div class="col-md-6 bg-info mx-auto p-3 text-center"><h3>Total Courses :{{courses.length}}</h3></div>
+     <div class="col-md-6 bg-info mx-auto p-3 text-center"><h2>Total Courses :{{courses.length}}</h2></div>
     </div>
     <div class="row justify-content-center align-items-center g-2 p-4">
      <div class="col-md-12">
          <table datatable [dtOptions]="dataTableOptions" [dtTrigger]="dtTrigger" class="table table-striped border border-2 rounded">
-             <caption class="text-center"><h3>Course List for Programmers (2023)</h3></caption>
+             <caption class="text-center"><h1>Course List for Programmers (2023)</h1></caption>
              <thead>
                  <tr>
                    <th>No.</th>
@@ -33,9 +32,9 @@
                      <td   class="text-center align-middle">
                          <div class="btn-goup">
                            &nbsp;
-                           <button  class="btn btn-danger" (click)="onDeleteCourse(courseItem.id)">Delete Course</button>
+                           <button  class="btn btn-danger" (click)="onDeleteCourse(courseItem.id)"><mat-icon fontIcon="delete"></mat-icon> Delete Course</button>
                            &nbsp;
-                           <button class="btn btn-success" (click)="onEditCourse(courseItem.id)">Edit Course</button>
+                           <button class="btn btn-success" (click)="onEditCourse(courseItem.id)"><mat-icon fontIcon="edit_square"></mat-icon> Edit Course</button>
                          </div>
                        </td>
                  </tr>

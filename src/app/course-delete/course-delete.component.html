@@ -1,8 +1,8 @@
-<h3 mat-dialog-title>Delete Course Action</h3>
+<h2 mat-dialog-title class="Title text-center">Action Delete Course Action with ID : {{course.id}}</h2>
 <mat-dialog-content>
-  <h4>Do you want to delete ?</h4>
+  <h2>{{message}}</h2>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="yes">Yes</button>
-  <button mat-raised-button color="accent"  mat-dialog-close mat-dialog-close="cancel">Cancel</button>
+  <button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="yes"><mat-icon fontIcon="delete_forever"></mat-icon>Yes</button>
+  <button mat-raised-button color="accent"  mat-dialog-close mat-dialog-close="cancel"><mat-icon fontIcon="cancel"></mat-icon>Cancel</button>
 </mat-dialog-actions>

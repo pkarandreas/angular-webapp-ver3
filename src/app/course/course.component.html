@@ -1,7 +1,7 @@
 <div class="container m-5 border border-dark rounded-3 contStyle mx-auto">
     <div class="row m-2">
         <div class="col-md-12" p-5>
-            <h5 class="text-center">{{formTitle}}</h5>
+            <h2 class="text-center">{{formTitle}}</h2>
             <br>
             <form *ngIf="course || _courseID === 0 else loading" [formGroup]="courseForm" (ngSubmit)="onFormSubmit()" class="border border-primary rounded-4 p-3">
 
@@ -74,10 +74,10 @@
 
                 <div class="row m-2">
                     <div class="col-md-6 form-group">
-                        <button type="submit" [disabled]="!courseForm.valid" class="btn btn-primary">Submit</button>
+                        <button type="submit" [disabled]="!courseForm.valid" class="btn btn-primary"><mat-icon fontIcon="save"></mat-icon>Submit</button>
                     </div>
                     <div class="col-md-6 form-group">
-                        <button type="button" class="btn btn-warning" (click)="onCancelHandler()">Cancel</button>
+                        <button type="button" class="btn btn-warning" (click)="onCancelHandler()"><mat-icon fontIcon="cancel"></mat-icon> Cancel</button>
                     </div>
                 </div>
             </form>

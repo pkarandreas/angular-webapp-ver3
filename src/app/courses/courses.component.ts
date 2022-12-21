@@ -6,7 +6,7 @@ import { Subject} from "rxjs";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import {DatePipe} from "@angular/common";
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { CourseDeleteComponent } from './../course-delete/course-delete.component';
 
 @Component({
@@ -19,6 +19,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public isLoggedIn:boolean = false;
   public homeCourseId : string = "";
   public homeCourse : CourseClass = null;
+  public dialogCfg : MatDialogConfig;
   //=================Declarations For DataTable=============
   public dataTableOptions : DataTables.Settings ={};
   public dtTrigger: Subject<any> = new Subject<any>();
@@ -43,10 +44,20 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(id:number){
-        // this.srv.getCourseByID(Number(id)).subscribe(data=>{this.homeCourse = data;});
-    const dialogRef = this.dialog.open(CourseDeleteComponent);
+    this.dialogCfg = new MatDialogConfig();
+    this.dialogCfg = new MatDialogConfig();
+    this.dialogCfg.disableClose =true;
+    this.dialogCfg.data = id;
+    this.dialogCfg.autoFocus = true;
+    this.dialogCfg.hasBackdrop = true;
+    this.dialogCfg.width = '20%';
+    const dialogRef = this.dialog.open(CourseDeleteComponent,this.dialogCfg);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result === 'yes')
+      {
+        this.srv.deleteCourse(id);
+        window.location.reload();
+      }
     });
 
   }
@@ -57,7 +68,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public onDeleted(msg:string)
   {
     alert(msg);
-    this.getCoursesAPI();
+
   }
 
   ngOnInit(): void {
@@ -82,7 +93,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
       body : tblData,
       theme : 'grid'
     });
-    pdf.output('datauristring');
+    pdf.output('dataurlnewwindow');
     pdf.save("course_2023.pdf");
   }
 }

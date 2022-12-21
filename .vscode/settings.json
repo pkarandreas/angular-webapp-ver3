@@ -3,6 +3,8 @@
         "autotable",
         "datatable",
         "datatables",
+        "dataurlnewwindow",
+        "deeppurple",
         "jspdf"
     ]
 }
